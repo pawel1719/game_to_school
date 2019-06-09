@@ -1,0 +1,20 @@
+body{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(214, 212, 209);
+}
+.form-control{
+    width: 15%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.head{
+    text-align: center;
+}
+header{
+    text-align: left;
+    margin-bottom: 30px;
+}
+
