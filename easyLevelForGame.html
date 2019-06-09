@@ -1,0 +1,38 @@
+<?php
+    require_once 'classes/config.php';
+?>
+<!DOCTYPE HTML>
+<HTML lang="pl">
+<HEAD>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Projekt - GRA</title>
+    <!-- Bootstrap core CSS -->
+    <link href="discriptions/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+
+</HEAD>
+<BODY>
+
+    <header>GRA - zdadnij stolicę</header>
+
+    <section>
+
+        
+
+        <form method="POST">
+            <input placeholder="Wpisz odpowiedź..." type="text" value="<?php echo Session::exist('actual_question') ? Session::get('actual_question')->annswer : ''; ?>" name="city" required />
+            <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
+            <input type="hidden" name="score" value="<?php echo $score ?>" />
+            <input type="submit" value="Ustaw" />
+        </form>
+
+    </section>
+
+    <footer></footer>
+
+</BODY>
+</HTML>
