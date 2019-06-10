@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS game DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
-USE game;
+USE quiz;
 
 CREATE TABLE IF NOT EXISTS user_ranking (
     `ID`        INT(11) NOT NULL AUTO_INCREMENT,
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS question_to_game (
     PRIMARY KEY(ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
-INSERT INTO question_to_game (`ID_type`, `question`, `answer`, `correct_answer`, `wrong_answer`)
+INSERT INTO question_to_game (`ID_type`, `question`, `annswer`, `correct_answer`, `wrong_answer`)
 VALUES
     (1, 'Jaką stolicę ma Gwinea Równikowa?', 'Malabo', 0, 0),
     (1, 'Jaką stolicę ma Kamerun?', 'Jaunde', 0, 0),
@@ -95,7 +95,7 @@ VALUES
     (1, 'Jaką stolicę ma Białoruś?', 'Mińsk', 0, 0),
     (1, 'Jaką stolicę ma Bośnia i Hercegowina?', 'Sarajewo', 0, 0),
     (1, 'Jaką stolicę ma Bułgaria?', 'Sofia', 0, 0),
-    (1, 'Jaką stolicę ma Chorwacja?', ' ', 0, 0),
+    (1, 'Jaką stolicę ma Chorwacja?', 'Zagreb', 0, 0),
     (1, 'Jaką stolicę ma Czarnogóra?', 'Podgorica', 0, 0),
     (1, 'Jaką stolicę ma Czechy?', 'Praga', 0, 0),
     (1, 'Jaką stolicę ma Dania?', 'Kopenhaga', 0, 0),

@@ -18,10 +18,23 @@
 
         <?php
 
-            $db = DBB::getInstance();
-            $score = Input::exists('score') ? Input::get('score') + 10 : 0;
-            
+            $game = playCity::getObject(Session::get('nick'));
+            echo $game->getNick() .'<br/>';
+            echo 'Wynik: '. $game->getScore()*10 .'/'. $game->getMaxScore()*10 .'<br/><br/>';
 
+            echo $game->getQuestion()->question .'<br/>';
+
+            // echo var_dump($game->db_questions) .'<br/>-------------<br/>';
+
+            echo var_dump($game->getQuestion()) .'<br/>';
+            echo 'Liczba elementów w bazie pytań: '. count(Session::get('questions')) .'<br/>';
+
+            echo $game->question->ID .'----<br/>';
+            echo $game->db_questions[7]->ID .'===<br/>';
+            for($i=0; $i<count($game->db_questions); $i++) {
+                echo var_dump($game->question->ID===$game->db_questions[$i]->ID);
+            }
+            
             //ACTION FOR FORM
             if(Input::exists()) {
                 if(Token::check(Input::get('token'))) {
@@ -34,17 +47,32 @@
                             'isLetter' => true
                         )
                     ));
+                    
+                    if($validation->passed()) {
+                        // echo $game->question->answer .' '. Input::get('city') .' --';
+                        // echo var_dump(strtolower($game->question->answer)===strtolower(Input::get('city')));
+                        if($game->checkAnswer(Input::get('city'))) {
+                            echo 'Gratulję';
+                        }else{
+                            echo 'Przykro mi. Koniec gry';
+                        }
+                    } else {
+                        //error for validation form
+                        foreach($validation->errors() as $error) {
+                            echo $error .'<br/>';
+                        }
+                    }
+                }
+            }
 
-                    if($validation->passed() && count(Session::get('questions')!=0)) {
 
-                            if(trim(strtolower(Session::get('actual_question')->annswer)) === trim(strtolower(Input::get('city')))) {
+            /*
+
+                            if(trim(strtolower(Session::get('actual_question')->aznswer)) === trim(strtolower(Input::get('city')))) {
                                 echo 'Gratulacje<hr/>';
-                                $db->update('question_to_game', Session::get('actual_question')->ID, array('correct_ansewer' => (Session::get('actual_question')->correct_ansewer + 1)));
+                                $db->update('question_to_game', Session::get('actual_question')->ID, array('correct_ansewer' => (Session::get('actual_question')->correct_answer + 1)));
                                 $score = Input::get('score') + 10;
-        
-                                $data = array();
-                                $z = 0;
-                                
+                                 
                                 //deleting actual question from question base
                                 for($i=0; $i<(count(Session::get('questions'))); $i++, $z++) {
                                     
@@ -77,10 +105,7 @@
                                 Session::delete('score');
                             }
                     }else{
-                        //error for validation form
-                        foreach($validation->errors() as $error) {
-                            echo $error .'<br/>';
-                        }
+                 
                     }
                 }
             }
@@ -92,11 +117,6 @@
                 Session::put('actual_question', Session::get('questions')[$no_question]);
             }
 
-            //show score user
-            if(Session::exist('score')) {
-                echo '<h3>Liczba punktów: '. $score .'</h3>';
-            }
-
             if(!Session::exist('questions')) {
                 //question from database
                 Session::put('questions', $db->get('question_to_game', array('ID', '>', 0))->results());
@@ -104,13 +124,13 @@
                 //question for user
                 echo Session::get('actual_question')->question;
             }
-
+            */
                      
 
         ?>
 
         <form method="POST">
-            <input placeholder="Wpisz odpowiedź..." type="text" value="<?php echo Session::exist('actual_question') ? Session::get('actual_question')->annswer : ''; ?>" name="city" required />
+            <input placeholder="Wpisz odpowiedź..." type="text" value="<?php echo $answer = (strlen($game->getQuestion()->answer)>0) ? $game->getQuestion()->answer : ''; ?>" name="city" required />
             <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
             <input type="hidden" name="score" value="<?php echo $score ?>" />
             <input type="submit" value="Ustaw" />

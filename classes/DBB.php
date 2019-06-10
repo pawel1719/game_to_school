@@ -3,11 +3,11 @@
 class DBB {
     private static $_instance = null;
     private $__host = 'localhost',
-            $__name_db = 'gra',
-            $__post_conection = '3307',
+            $__name_db = 'game',
+            $__post_conection = '3306',
             $__encoding = 'UTF8',
             $__user = 'root',
-            $__password = 'usbw';
+            $__password = '';
     private $_pdo,
             $_query,
             $_error = false,
