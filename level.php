@@ -11,16 +11,10 @@ if (!Session::exist('nick')) {
 <HTML lang="pl">
 
 <HEAD>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <?php require_once PATH_TO_HEAD; ?>
 
     <title>Wybór poziomu - GRA</title>
-    <!-- Bootstrap core CSS -->
-    <link href="discriptions/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="style.css" rel="stylesheet">
 
 </HEAD>
 

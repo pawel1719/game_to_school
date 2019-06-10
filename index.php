@@ -1,26 +1,18 @@
 <?php
 require_once 'classes/config.php';
 
-if (Session::exist('nick')) {
-    header('Location: level.php');
-}
+    if (Session::exist('nick')) {
+        header('Location: selectGame.php');
+    }
 ?>
 <!DOCTYPE HTML>
 <HTML lang="pl">
 
 <HEAD>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
     <?php require_once PATH_TO_HEAD; ?>
 
     <title>Projekt - GRA</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="discriptions/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="style.css" rel="stylesheet">
 
 </HEAD>
 
@@ -48,7 +40,7 @@ if (Session::exist('nick')) {
                     if ($validation->passed()) {
                         //success for validation
                         Session::put('nick', Input::get('nick'));
-                        header('Location: level.php');
+                        header('Location: selectGame.php');
                     } else {
                         //error for validation
                         foreach ($validation->errors() as $error) {
