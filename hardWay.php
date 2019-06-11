@@ -20,8 +20,11 @@ require_once 'classes/config.php';
 
     <div class="head">
         <h2><b>GRA - pokonaj tor przeszkód</b></h2>
+        <a href="selectGame.php"><button class="btn btn-info">Powrót</button></a>
     </div>
-    <div class="content">
+
+
+    <div class="content text-center">
         
         <script>
             
@@ -144,7 +147,7 @@ require_once 'classes/config.php';
 
         </script>
         
-        <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)">W górę</button>
+        <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn btn-secondary">W górę</button>
 
     </div>
     <footer></footer>

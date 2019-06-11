@@ -29,7 +29,7 @@ class Validate {
                         case 'min' :
                             //chacking minimum case of variables
                             if(strlen($value)<$rule_value) {
-                                $this->addError("{$item} musi posiadać minimum {$rule_value} znaki!");
+                                $this->addError("{$item} musi posiadać minimum {$rule_value} znaków!");
                             }
                         break;
                         case 'max' : 
@@ -53,7 +53,7 @@ class Validate {
                         case 'letter_or_number' :
                             // validation that case are letters
                             if(preg_match("/^([A-Za-z0-9_]{2,})$/", $value)!=$rule_value) {
-								$this->addError("{$item}musi być literą lub liczbą!");
+								$this->addError("{$item} musi być literą lub liczbą!");
 							}
                         break;
                     }

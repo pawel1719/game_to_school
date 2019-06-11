@@ -16,6 +16,8 @@ class playCity {
         $this->_db = DBB::getInstance();
         $this->nick = $nick;
         $this->getQuestions();
+        $ses = Session::exist('score') ? Session::get('score') : $this->score;
+        $this->setScore($ses);
     }//end construct
 
     public static function getObject($nick) {
@@ -29,7 +31,7 @@ class playCity {
         if(Session::exist('questions')) {
             $this->db_questions = Session::get('questions');
             $this->max_score = $this->_db->query('SELECT COUNT(*) no FROM '. $this->table_name)->first();
-            echo var_dump(Session::get('questions'));
+            // echo var_dump(Session::get('questions'));
         }else{
             $this->db_questions = $this->_db->get($this->table_name, array('ID', '>', 0))->results();
             Session::put('questions', $this->db_questions);
@@ -61,7 +63,6 @@ class playCity {
         if(strtolower($this->question->answer)===strtolower($answer)) {
             
             $this->counterCorrectAnswer($this->question->ID);
-            $this->setScore();
             $this->addScore(1);
             $this->deleteQuestion();
 
@@ -73,12 +74,37 @@ class playCity {
             return true;
         }else{
             $this->counterWrongAnswer($this->question->ID);
+            $this->addScoreToDB();
+            Session::flash('end_game_city', 'KONIEC GRY!  <br/> Twój wynik to '. $this->score*10 .' <br/> Spróbuj jeszcze raz');
+
+            Session::delete('score');
             Session::delete('question');
             Session::delete('questions');
             Session::delete('id_question');
 
+
             return false;
         }
+    }//end function
+
+    public function addScoreToDB() {
+        $exist = $this->_db->get('user_ranking', array('nick', '=', $this->nick));
+
+        //set hidden as 1 when row exist
+        if($exist->count() > 0) {
+            foreach($exist->results() as $row) {
+                $this->_db->update('user_ranking',$row->ID, array('hidden' => 1));
+            }      
+        }
+
+        //add score to db
+        $this->_db->insert('user_ranking', array(
+            'nick'      => $this->nick,
+            'score'     => $this->getScore(),
+            'hidden'    => 0,
+            'id_type'   => 1,
+            'date'      => date('Y-m-d H:i:s')
+        ));
     }//end function
 
     private function deleteQuestion() {
@@ -106,8 +132,7 @@ class playCity {
     }//end function
 
     public function addScore($addPoints) {
-        $no = Session::exist('score') ? Session::get('score') : $this->score;
-        $this->score = $no + $addPoints;
+        $this->setScore($this->getScore() + $addPoints);
     }//end function
 
     public function setNick($nick) {
@@ -118,12 +143,8 @@ class playCity {
         $this->db_questions = $questions;
     }//end function
 
-    public function setScore() {
-        if(Session::exist('score')) {
-            $this->score = Session::get('score');
-        }else{
-            $this->score;
-        }
+    public function setScore($score) {
+        $this->score = $score;
     }//end function
 
     public function getNick() {

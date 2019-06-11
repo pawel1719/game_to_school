@@ -4,7 +4,9 @@ USE quiz;
 CREATE TABLE IF NOT EXISTS user_ranking (
     `ID`        INT(11) NOT NULL AUTO_INCREMENT,
     `nick`      VARCHAR(25) NOT NULL,
-    `results`   INT(11) NOT NULL,
+    `score`     INT(11) NOT NULL,
+    `hidden`    INT(1) NOT NULL,
+    `id_type`   INT(2) NOT NULL,
     `date`      DATETIME NOT NULL,
     PRIMARY KEY(ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
