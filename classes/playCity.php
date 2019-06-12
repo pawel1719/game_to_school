@@ -16,6 +16,7 @@ class playCity {
         $this->_db = DBB::getInstance();
         $this->nick = $nick;
         $this->getQuestions();
+        $this->getQuestion();
         $ses = Session::exist('score') ? Session::get('score') : $this->score;
         $this->setScore($ses);
     }//end construct
@@ -60,6 +61,8 @@ class playCity {
     }//end function
 
     public function checkAnswer($answer) {
+        // echo var_dump($this->question);
+        // echo var_dump($this->db_questions);
         if(strtolower($this->question->answer)===strtolower($answer)) {
             
             $this->counterCorrectAnswer($this->question->ID);
@@ -82,29 +85,37 @@ class playCity {
             Session::delete('questions');
             Session::delete('id_question');
 
-
             return false;
         }
     }//end function
 
     public function addScoreToDB() {
         $exist = $this->_db->get('user_ranking', array('nick', '=', $this->nick));
+        $biggest = false;
+        // echo var_dump($exist);
 
-        //set hidden as 1 when row exist
-        if($exist->count() > 0) {
-            foreach($exist->results() as $row) {
-                $this->_db->update('user_ranking',$row->ID, array('hidden' => 1));
-            }      
+        foreach($exist->results() as $array) {
+            if(Session::get('score') > $array->score) {
+                $biggest = true;
+            }
         }
 
-        //add score to db
-        $this->_db->insert('user_ranking', array(
-            'nick'      => $this->nick,
-            'score'     => $this->getScore(),
-            'hidden'    => 0,
-            'id_type'   => 1,
-            'date'      => date('Y-m-d H:i:s')
-        ));
+        if($biggest==true || $exist->count()==0) {
+            //set hidden as 1 when row exist
+            if($exist->count() > 0) {
+                foreach($exist->results() as $row) {
+                    $this->_db->update('user_ranking',$row->ID, array('hidden' => 1));
+                }      
+            }
+            //add score to db
+            $this->_db->insert('user_ranking', array(
+                'nick'      => $this->nick,
+                'score'     => $this->getScore(),
+                'hidden'    => 0,
+                'id_type'   => 1,
+                'date'      => date('Y-m-d H:i:s')
+            ));
+        }
     }//end function
 
     private function deleteQuestion() {

@@ -79,7 +79,7 @@ require_once 'classes/config.php';
 
                 
                 <form method="POST">
-                    <input placeholder="Nick" class="form-control form-input" type="text" name="nick" required />
+                    <input placeholder="Nick" class="form-control form-input" value="<?php echo Input::get('nick'); ?>" type="text" name="nick" required />
                     <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
                     <input type="submit" value="Ustaw" class="btn btn-info" />
                 </form>

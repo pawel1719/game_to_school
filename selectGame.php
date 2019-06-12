@@ -14,6 +14,13 @@ if (!Session::exist('nick')) {
 
     <title>Projekt - GRA</title>
 
+    <style>
+        img {
+            height: 240px;
+            width: 320px;
+        }
+    </style>
+
 </HEAD>
 
 <BODY>
@@ -34,7 +41,7 @@ if (!Session::exist('nick')) {
                 Wisielca
             </h2>
             <div class="card-block">
-                <img src="include\screen\way1.png" alt="Placeholder" class="rounded">
+                <img src="include\screen\wisielec1.png" alt="Placeholder" class="rounded">
                     <br/>
                     <hr/>
                 <a href="hangman.php" alt="wisielec" class="btn btn-light btn-link">Zagraj</a>
@@ -48,7 +55,7 @@ if (!Session::exist('nick')) {
                 Zgadywanka stolic
             </h2>
             <div class="card-block">
-                <img src="include\screen\way1.png" alt="Placeholder" class="rounded">
+                <img src="include\screen\panstwo1.png" alt="Placeholder" class="rounded">
                     <br/>
                     <hr/>                
                 <a href="level.php" alt="Zagraj w zgadywanke stolic" class="btn btn-light btn-link">Zagraj</a>
