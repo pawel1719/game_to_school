@@ -38,13 +38,16 @@ if (!Session::exist('nick')) {
         <div class="col-md-4">
             <div class="card text-white bg-secondary text-center">
             <h2 class="card-header">
-                Wisielca
+                <a href="hangman.php" style="color: white;">Wisielca</a>
             </h2>
             <div class="card-block">
-                <img src="include\screen\wisielec1.png" alt="Placeholder" class="rounded">
+                <a href="hangman.php"><img src="include\screen\wisielec1.png" alt="Placeholder" class="rounded"></a>
                     <br/>
                     <hr/>
                 <a href="hangman.php" alt="wisielec" class="btn btn-light btn-link">Zagraj</a>
+            </div>
+            <div class="card-footer text-muted">
+                <a href="resultUsers.php" alt="Pokaż wyniki" class="btn btn-dark btn-link">Wyniki</a>
             </div>
             </div>
         </div>
@@ -52,13 +55,15 @@ if (!Session::exist('nick')) {
         <div class="col-md-4">
             <div class="card text-white bg-secondary text-center">
             <h2 class="card-header">
-                Zgadywanka stolic
+                <a href="level.php" style="color: white;">Zgadywanka stolic</a>
             </h2>
             <div class="card-block">
-                <img src="include\screen\panstwo1.png" alt="Placeholder" class="rounded">
-                    <br/>
+                <a href="level.php"><img src="include\screen\panstwo1.png" alt="Placeholder" class="rounded"></a>
                     <hr/>                
                 <a href="level.php" alt="Zagraj w zgadywanke stolic" class="btn btn-light btn-link">Zagraj</a>
+            </div>
+            <div class="card-footer text-muted">
+                <a href="resultUsers.php" alt="Pokaż wyniki" class="btn btn-dark btn-link">Wyniki</a>
             </div>
             </div>
         </div>
@@ -66,13 +71,16 @@ if (!Session::exist('nick')) {
         <div class="col-md-4">
             <div class="card text-white bg-secondary text-center">
             <h2 class="card-header">
-                Tor przeszkód
+                <a href="hardWay.php" style="color: white;">Tor przeszkód</a>
             </h2>
             <div class="card-block">
-                <img src="include\screen\way1.png" alt="Placeholder" class="rounded">
+                <a href="hardWay.php"><img src="include\screen\way1.png" alt="Placeholder" class="rounded"></a>
                     <br/>
                     <hr/>
                 <a href="hardWay.php" alt="Zagraj w tor przeszkód" class="btn btn-light btn-link">Zagraj</a>
+            </div>
+            <div class="card-footer text-muted">
+                <a href="resultUsers.php" alt="Pokaż wyniki" class="btn btn-dark btn-link">Wyniki</a>
             </div>
             </div>
         </div>
@@ -80,6 +88,7 @@ if (!Session::exist('nick')) {
     </div>
 
     <br/>
+    <hr />
     <br/>
     <br/>
     <br/>
