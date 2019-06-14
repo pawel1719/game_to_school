@@ -27,7 +27,7 @@ require_once 'classes/config.php';
 
         <form metod="POST">
             <p>Dopasuj stolicę do Państwa:</p>
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn-group" role="group1" aria-label="Basic example">
                 <label class="btn btn-secondary ">
                     <input type="radio" name="options" id="captio1" value="" autocomplete="off"> Stolica 1
                 </label>
@@ -43,18 +43,18 @@ require_once 'classes/config.php';
             </div>
             <br>
             <p>Dopasuj Państwo do stolicy:</p>
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn-group" role="group2" aria-label="Basic example">
                 <label class="btn btn-secondary ">
-                    <input type="radio" name="options" id="country1" value="" autocomplete="off"> Państwo 1
+                    <input type="button" name="options" id="country1" value="" autocomplete="off"> Państwo 1
                 </label>
                 <label class="btn btn-secondary">
-                    <input type="radio" name="options" id="country2" value="" autocomplete="off"> Państwo 2
+                    <input type="button" name="options" id="country2" value="" autocomplete="off"> Państwo 2
                 </label>
                 <label class="btn btn-secondary">
-                    <input type="radio" name="options" id="country3" value="" autocomplete="off"> Państwo 3
+                    <input type="button" name="options" id="country3" value="" autocomplete="off"> Państwo 3
                 </label>
                 <label class="btn btn-secondary">
-                    <input type="radio" name="options" id="country4" value="" autocomplete="off"> Państwo 4
+                    <input type="button" name="options" id="country4" value="" autocomplete="off"> Państwo 4
                 </label>
             </div>
             <div>
