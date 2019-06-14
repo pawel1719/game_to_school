@@ -1,4 +1,5 @@
 <?php
+require_once 'classes/config.php';
 function fetchWordArray($wordFile)
 {
     $file = fopen($wordFile, 'r');
@@ -73,6 +74,7 @@ function chceckGameOver($MAX_ATTEMPTS, $userAttempts, $answer, $hidden)
         {
             unset($_SESSION['hidden']);
         }
+        Session::delete('hidden');
         die;
     }
     if($userAttempts >= $MAX_ATTEMPTS)  
@@ -92,6 +94,7 @@ function chceckGameOver($MAX_ATTEMPTS, $userAttempts, $answer, $hidden)
         {
             unset($_SESSION['hidden']);
         }
+        Session::delete('hidden');
         die;
     }
 
