@@ -48,11 +48,11 @@
             function validateInput() {
                 var x = document.forms["inputForm"]["userInput"].value;
                 if (x == "" || x == "") {
-                    alert("Please enter a character");
+                    alert("Prosze wprowadź słowo");
                     return false;
                 }
                 if (!isNaN(x)) {
-                    alert("Please enter a character");
+                    alert("Prosze wprowadź słowo");
                     return false;
                 }
             }

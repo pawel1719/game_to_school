@@ -58,28 +58,42 @@ function checkAndReplace($userInput, $hidden, $answer)
 
 function chceckGameOver($MAX_ATTEMPTS, $userAttempts, $answer, $hidden)
 {
-    if($userAttempts >= $MAX_ATTEMPTS)
-    {
-        echo 'Game Over: The correct word was ';
-        foreach($answer as $letter)
-        {
-            echo $letter;
-        }
-        echo '<br><form action="" method="POST"><input type="submit" name="newWord" value="Try Another Word></form><br>';
-        die;
-    }
     if($hidden==$answer)
     {
-        echo 'Game Over: The correct word is indeed ';
+        echo '<h1>'.'Wygrałeś!'.'</h1>'; 
+        echo "\n\r".'<h4>'.'<br>'.'Prawidłowe słowo to: '.'</h4>';
+        
         foreach($answer as $letter)
         {
             echo $letter;
         }
-        echo '<br><form action="" method="POST"><input type="submit" name="newWord" value="Try Another Word></form><br>';
+        echo '<br><form action="hangman.php" method="POST">
+        <input type="submit" class="btn btn-danger" name="newWord" value="Zagraj ponownie"></form><br>';
+        if(isset($_POST['newWord']))
+        {
+            unset($_SESSION['hidden']);
+        }
+        die;
+    }
+    if($userAttempts >= $MAX_ATTEMPTS)  
+    {
+        echo '<h1>'.'Przegrałeś!'.'</h1>'; 
+        echo '<h2>'.'Gra skończona!'.'</h2>'; 
+        echo "\n\r".'<h4>'.'<br>'.'Słowo to: '.'</h4>';
+        
+        echo 'Gra skończona: Prawidłowe słowo to:  ';
+        foreach($answer as $letter)
+        {
+            echo $letter;
+        }
+        echo '<br><form action="hangman.php" method="POST">
+        <input type="submit" name="newWord" class="btn btn-danger" value="Zagraj ponownie"></form><br>';
+        if(isset($_POST['newWord']))
+        {
+            unset($_SESSION['hidden']);
+        }
         die;
     }
 
 }
-
-
 ?>
