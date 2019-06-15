@@ -12,9 +12,31 @@ body{
 }
 .head{
     text-align: center;
+    margin: 15px;
 }
 header{
     text-align: left;
     margin-bottom: 30px;
 }
+.float-left{
+    width: 32%;
+    margin: 5px;
+}
 
+img{
+    width:100%
+}
+.title{
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    color: white;
+}
+
+.button-game{
+    padding: 15px;
+}
+.buttonExit{
+    text-align: center;
+    margin-top: 20px;
+    
+}
