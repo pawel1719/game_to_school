@@ -37,6 +37,13 @@ img{
 }
 .buttonExit{
     text-align: center;
-    margin-top: 20px;
-    
+    margin-top: 20px;    
+}
+.button{
+    text-align: center;
+}
+.game{
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
 }
