@@ -35,8 +35,8 @@ require_once 'classes/config.php';
                     </div>
                 </div>
             </div>
-            <div class="text-center" style="text-align: center">
-                <script>
+            <div class="text-center" style="text-align: center; border: black 15px">
+                <script >
 
                     var myGamePiece;
                     var myObstacles = [];
@@ -51,11 +51,13 @@ require_once 'classes/config.php';
 
                     var myGameArea = {
                         canvas: document.createElement("canvas"),
+                        handle: document.getElementsByClassName('text-center')[0],
                         start: function () {
                             this.canvas.width = 740;
                             this.canvas.height = 540;
                             this.context = this.canvas.getContext("2d");
-                            document.body.insertBefore(this.canvas, document.body.childNodes[2]);
+                            // document.body.insertBefore(this.canvas, document.body.childNodes[2]);
+                            this.handle.append(this.canvas);
                             this.frameNo = 0;
                             this.interval = setInterval(updateGameArea, 15);
                         },
