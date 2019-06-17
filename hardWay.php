@@ -35,7 +35,7 @@ require_once 'classes/config.php';
                     </div>
                 </div>
             </div>
-            <div class="text-center" >
+            <div class="hardway" >
                 <script >
 
                     var myGamePiece;
