@@ -1,9 +1,9 @@
 <?php
 require_once 'classes/config.php';
 
-    if(!Session::exist('nick')) {
-        header('Location: index.php');
-    }
+if (!Session::exist('nick')) {
+    header('Location: index.php');
+}
 ?>
 <!DOCTYPE HTML>
 <HTML lang="pl">
@@ -25,7 +25,7 @@ require_once 'classes/config.php';
         <div class="container-fluid">
             <div class="head">
                 <div class="float-left">
-                    <h2><b>GRA - Wisielec</b></h2>
+                    <h2><b>GRA - Tor przeszkód</b></h2>
                 </div>
                 <div class="" style="text-align:right">
                     <a href="selectGame.php"><button class="btn btn-info">Powrót</button></a>
@@ -35,9 +35,8 @@ require_once 'classes/config.php';
                     </div>
                 </div>
             </div>
-            <div class="hardway" >
-                <script >
-
+            <div class="hardway">
+                <script>
                     var myGamePiece;
                     var myObstacles = [];
                     var myScore;
@@ -52,7 +51,7 @@ require_once 'classes/config.php';
                     var myGameArea = {
                         canvas: document.createElement("canvas"),
                         handle: document.getElementsByClassName('text-center')[0],
-                        start: function () {
+                        start: function() {
                             this.canvas.width = 900;
                             this.canvas.height = 540;
                             this.context = this.canvas.getContext("2d");
@@ -61,7 +60,7 @@ require_once 'classes/config.php';
                             this.frameNo = 0;
                             this.interval = setInterval(updateGameArea, 15);
                         },
-                        clear: function () {
+                        clear: function() {
                             this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
                         }
                     }
@@ -77,7 +76,7 @@ require_once 'classes/config.php';
                         this.y = y;
                         this.gravity = 0;
                         this.gravitySpeed = 0;
-                        this.update = function () {
+                        this.update = function() {
                             ctx = myGameArea.context;
                             if (this.type == "text") {
                                 ctx.font = this.width + " " + this.height;
@@ -88,20 +87,20 @@ require_once 'classes/config.php';
                                 ctx.fillRect(this.x, this.y, this.width, this.height);
                             }
                         }
-                        this.newPos = function () {
+                        this.newPos = function() {
                             this.gravitySpeed += this.gravity;
                             this.x += this.speedX;
                             this.y += this.speedY + this.gravitySpeed;
                             this.hitBottom();
                         }
-                        this.hitBottom = function () {
+                        this.hitBottom = function() {
                             var rockbottom = myGameArea.canvas.height - this.height;
                             if (this.y > rockbottom) {
                                 this.y = rockbottom;
                                 this.gravitySpeed = 0;
                             }
                         }
-                        this.crashWith = function (otherobj) {
+                        this.crashWith = function(otherobj) {
                             var myleft = this.x;
                             var myright = this.x + (this.width);
                             var mytop = this.y;
@@ -149,7 +148,9 @@ require_once 'classes/config.php';
                     }
 
                     function everyinterval(n) {
-                        if ((myGameArea.frameNo / n) % 1 == 0) { return true; }
+                        if ((myGameArea.frameNo / n) % 1 == 0) {
+                            return true;
+                        }
                         return false;
                     }
 
@@ -160,13 +161,13 @@ require_once 'classes/config.php';
             </div>
         </div>
         <div>
-        <div class="button" style="text-align: center">
-            <button onClick="javascript:location.reload()" class="btn btn-secondary btn-lg">Zagraj</button>
-            <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn btn-secondary btn-lg">W górę</button>
+            <div class="button" style="text-align: center">
+                <button onClick="javascript:location.reload()" class="btn btn-secondary btn-lg">Zagraj</button>
+                <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn btn-secondary btn-lg">W górę</button>
+            </div>
         </div>
     </div>
-    </div>
-    
+
     <footer></footer>
     <script src="discriptions/js/bootstrap.min.js"></script>
 </BODY>
