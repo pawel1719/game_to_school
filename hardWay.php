@@ -159,13 +159,14 @@ require_once 'classes/config.php';
                 </script>
             </div>
         </div>
-    </div>
-    <div>
+        <div>
         <div class="button" style="text-align: center">
-            <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn btn-secondary">W
+            <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn btn-secondary btn-lg">W
                 górę</button>
         </div>
     </div>
+    </div>
+    
     <footer></footer>
     <script src="discriptions/js/bootstrap.min.js"></script>
 </BODY>
