@@ -161,8 +161,8 @@ require_once 'classes/config.php';
         </div>
         <div>
         <div class="button" style="text-align: center">
-            <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn btn-secondary btn-lg">W
-                górę</button>
+            <button onClick="javascript:location.reload()" class="btn btn-secondary btn-lg">Zagraj</button>
+            <button onmousedown="accelerate(-0.2)" onmouseup="accelerate(0.05)" class="btn btn-secondary btn-lg">W górę</button>
         </div>
     </div>
     </div>

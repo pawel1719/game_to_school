@@ -30,12 +30,17 @@ require_once 'classes/config.php';
 
 <BODY>
 
-    <div class="head">
-        <a href="selectGame.php" ><button class="btn btn-primary">POWRÓT</button></a>
-        <h2><b>GRA - zdadnij państwo lub stolicę</b></h2>
+    <div class="head" style="width:800px; margin-top:35px; margin-left:auto; margin-right:auto;">
+        <div class="float-left">
+            <h2><b>GRA - Wisielec</b></h2>
+        </div>
+        <div class="" style="text-align:right">
+            <a href="selectGame.php"><button class="btn btn-info">Powrót</button></a>
+            <div>
+                <br><hr>    
+            </div>
+        </div>
     </div>
-
-    <br/>
 
     <div class="content text-center">
         
