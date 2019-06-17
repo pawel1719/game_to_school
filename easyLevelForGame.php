@@ -19,10 +19,18 @@ require_once 'classes/config.php';
 </HEAD>
 
 <BODY>
-    <div class="head">
-        <h4><b>GRA - zgadywanie</b></h4>
+    <div class="head" style="width:800px; margin-top:35px; margin-left:auto; margin-right:auto;">
+        <div class="float-left">
+            <h2><b>GRA - Wisielec</b></h2>
+        </div>
+        <div class="" style="text-align:right">
+            <a href="selectGame.php"><button class="btn btn-info">Powrót</button></a>
+            <div>
+                <br><hr>    
+            </div>
+        </div>
     </div>
-    <div class="content">
+    <div class="content" style="width:800px; margin-top:35px; margin-left:auto; margin-right:auto;">
         <h5>Dopasuj poprawną odpowiedź</h5>
 
         <form metod="POST">

@@ -19,12 +19,18 @@
 
 </HEAD>
 <BODY>
-   
-    <div class="card">
-    <h5 class="card-header"> 
-        <a href="level.php" ><button class="btn btn-primary">POWRÓT</button></a>
-        <div class="text-center">GRA - zdadnij stolicę użytkowniku <b><?php echo $game->getNick(); ?></b></div>
-    </h5>
+    <div class="head" style="width:800px; margin-top:35px; margin-left:auto; margin-right:auto;">
+        <div class="float-left">
+            <h2><b>GRA - Wisielec</b></h2>
+        </div>
+        <div class="" style="text-align:right">
+            <a href="selectGame.php"><button class="btn btn-info">Powrót</button></a>
+            <div>
+                <br><hr>    
+            </div>
+        </div>
+    </div>
+    <div class="card" style="width:800px; margin-top:35px; margin-left:auto; margin-right:auto;">
     <div class="card-body">
         <h6 class="card-title">
             <?php 
@@ -66,17 +72,17 @@
                 }
 
             ?>
-            </div>
         </h6>
         <h5 class="card-title"><?php echo $game->getQuestion()->question; ?></h5>
         <p class="card-text">
             <form method="POST">
-                <input placeholder="Wpisz odpowiedź..." type="text" class="form-control" value="<?php echo $answer = (strlen($game->getQuestion()->answer)>0) ? $game->getQuestion()->answer : ''; ?>" name="city" required /><br/>
+                <input placeholder="Wpisz odpowiedź..." type="text" class="form-control" style="width: 200px;" value="<?php //echo $answer = (strlen($game->getQuestion()->answer)>0) ? $game->getQuestion()->answer : ''; ?>" name="city" required /><br/>
                 <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
                 <input type="hidden" name="score" value="<?php echo $score ?>" />
                 <input type="submit" value="Sprawdź" class="btn btn-primary" />
             </form>
         </p>
+    </div>
     </div>
     </div>
 
