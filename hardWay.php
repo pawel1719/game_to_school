@@ -50,7 +50,7 @@ if (!Session::exist('nick')) {
 
                     var myGameArea = {
                         canvas: document.createElement("canvas"),
-                        handle: document.getElementsByClassName('text-center')[0],
+                        handle: document.getElementsByClassName('hardway')[0],
                         start: function() {
                             this.canvas.width = 900;
                             this.canvas.height = 540;
