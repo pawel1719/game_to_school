@@ -35,7 +35,7 @@ require_once 'classes/config.php';
                     </div>
                 </div>
             </div>
-            <div class="text-center" style="text-align: center; border: black 15px">
+            <div class="text-center" >
                 <script >
 
                     var myGamePiece;
@@ -53,7 +53,7 @@ require_once 'classes/config.php';
                         canvas: document.createElement("canvas"),
                         handle: document.getElementsByClassName('text-center')[0],
                         start: function () {
-                            this.canvas.width = 740;
+                            this.canvas.width = 900;
                             this.canvas.height = 540;
                             this.context = this.canvas.getContext("2d");
                             // document.body.insertBefore(this.canvas, document.body.childNodes[2]);
