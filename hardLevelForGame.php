@@ -1,17 +1,16 @@
 <?php
-require_once 'classes/config.php';
+    require_once 'classes/config.php';
 
-//session exist
-if (!Session::exist('nick')) {
-    header('Location: index.php');
-}
+    //session exist
+    if (!Session::exist('nick')) {
+        header('Location: index.php');
+    }
 
-$game = playCity::getObject(Session::get('nick'));
+    $game = playCity::getObject(Session::get('nick'));
 
 ?>
 <!DOCTYPE HTML>
 <HTML lang="pl">
-
 <HEAD>
 
     <?php require_once PATH_TO_HEAD; ?>
@@ -19,7 +18,6 @@ $game = playCity::getObject(Session::get('nick'));
     <title>Projekt - GRA</title>
 
 </HEAD>
-
 <BODY>
     <div class="head" style="width:800px; margin-top:35px; margin-left:auto; margin-right:auto;">
         <div class="float-left">

@@ -52,7 +52,7 @@ class playCity {
         }else{
             //generate new question
             $no = rand(0, count($this->db_questions)-1);
-            $no = ($no>1) ? $no : 1;
+            // $no = ($no>1) ? $no : 1;
             $this->question = $this->db_questions[$no];
             Session::put('id_question', $this->question->ID);
         }
@@ -63,7 +63,7 @@ class playCity {
     public function checkAnswer($answer) {
         // echo var_dump($this->question);
         // echo var_dump($this->db_questions);
-        if(strtolower($this->question->answer)===strtolower($answer)) {
+        if(strtolower($this->question->answer)===strtolower($answer) && strlen($answer)>0) {
             
             $this->counterCorrectAnswer($this->question->ID);
             $this->addScore(1);
@@ -132,6 +132,18 @@ class playCity {
 
         $this->setDbQuestion($array);
         unset($array);
+    }//end function
+
+    public function randIndex($string_numer = '0123') {
+        $result = array();
+                
+        for($i=0; $i<4; $i++) {
+            $index          = rand(0, strlen($string_numer)-1);
+            $result[$i]     = $string_numer[$index];
+            $string_numer   = str_replace($string_numer[$index], '', $string_numer);
+        }
+        
+        return $result;
     }//end function
 
     private function counterCorrectAnswer($id) {

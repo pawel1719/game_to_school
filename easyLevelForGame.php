@@ -1,13 +1,20 @@
 <?php
-require_once 'classes/config.php';
+    require_once 'classes/config.php';
+
+    //session exist
+    if (!Session::exist('nick')) {
+        header('Location: index.php');
+    }
+    
+    $game = playCity::getObject(Session::get('nick'));
+
 ?>
 <!DOCTYPE HTML>
 <HTML lang="pl">
 
 <HEAD>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <?php require_once PATH_TO_HEAD; ?>
 
     <title>Projekt - GRA</title>
 
@@ -34,23 +41,53 @@ require_once 'classes/config.php';
                 </div>
             </div>
             <div class="content">
-                <h5>Dopasuj poprawną odpowiedź</h5>
+            <?php
 
-                <form metod="POST">
-                    <p>Dopasuj stolicę do Państwa:</p>
+                echo '<div class="col">Wynik: ' . ($game->getScore() * 10) . '/' . $game->getMaxScore() * 10;
+                echo '</div><div class="col">Liczba pozostałych pytań: ' . count(Session::get('questions'));
+                echo '<hr/>';
+                
+
+                //ACTION FOR FORM
+                if (Input::exists()) {
+                    if (Token::check(Input::get('token'))) {
+
+                        if ($game->checkAnswer(Input::get('city'))) {
+                            echo '<div class="alert alert-success" role="alert">Brawo! Poprawna odpowiedź.</div>';
+                        } else {
+                            header('Location: level.php');
+                        }
+                         
+                    }
+                }
+
+                // echo var_dump($game->getQuestion());
+
+                $index_array = $game->randIndex();
+                $answer[0] = $game->getQuestion()->answer; 
+                $answer[1] = $game->getQuestion()->answer1; 
+                $answer[2] = $game->getQuestion()->answer2; 
+                $answer[3] = $game->getQuestion()->answer3; 
+
+            ?>
+
+                <form method="POST">
+                    <p><?php echo $game->getQuestion()->question; ?></p>
                     <div class="btn-group" role="group1" aria-label="Basic example">
                         <label class="btn btn-secondary ">
-                            <input type="radio" name="options" id="captio1" value="" autocomplete="off"> Stolica 1
+                            <input type="radio" name="city" id="captio1" value="<?php echo $answer[$index_array[0]]; ?>" autocomplete="off"> <?php echo $answer[$index_array[0]]; ?>
                         </label>
                         <label class="btn btn-secondary">
-                            <input type="radio" name="options" id="captio2" value="" autocomplete="off"> Stolica 2
+                            <input type="radio" name="city" id="captio2" value="<?php echo $answer[$index_array[1]]; ?>" autocomplete="off"> <?php echo $answer[$index_array[1]]; ?>
                         </label>
                         <label class="btn btn-secondary">
-                            <input type="radio" name="options" id="captio3" value="" autocomplete="off"> Stolica 3
+                            <input type="radio" name="city" id="captio3" value="<?php echo $answer[$index_array[2]]; ?>" autocomplete="off"> <?php echo $answer[$index_array[2]]; ?>
                         </label>
                         <label class="btn btn-secondary">
-                            <input type="radio" name="options" id="captio4" value="" autocomplete="off"> Stolica 4
+                            <input type="radio" name="city" id="captio4" value="<?php echo $answer[$index_array[3]]; ?>" autocomplete="off"> <?php echo $answer[$index_array[3]]; ?>
                         </label>
+                        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>" />
+                        <input type="hidden" name="score" value="<?php echo $score; ?>" />
                     </div>
                     <div>
                         <input type="submit" value="Zapisz" class="btn btn-info " />
@@ -59,7 +96,11 @@ require_once 'classes/config.php';
             </div>
         </div>
     </div>
-    <footer></footer>
+    <footer>
+        <?php
+            // echo var_dump($game->db_questions);
+        ?>
+    </footer>
 
 </BODY>
 

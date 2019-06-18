@@ -1,4 +1,13 @@
-<?php session_start(); ?>
+<?php 
+
+    require_once 'classes/config.php';
+
+    //session exist
+    if (!Session::exist('nick')) {
+        header('Location: index.php');
+    }
+
+?>
 <html>
 
 <head>
