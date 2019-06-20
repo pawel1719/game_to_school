@@ -110,7 +110,7 @@ class playCity {
             //add score to db
             $this->_db->insert('user_ranking', array(
                 'nick'      => $this->nick,
-                'score'     => $this->getScore(),
+                'score'     => $this->getScore()*10,
                 'hidden'    => 0,
                 'id_type'   => 1,
                 'date'      => date('Y-m-d H:i:s')

@@ -24,7 +24,7 @@
             <h2><b>GRA - Wisielec</b></h2>
         </div>
         <div class="" style="text-align:right">
-            <a href="selectGame.php"><button class="btn btn-info">Powrót</button></a>
+            <a href="endCityGame.php"><button class="btn btn-info">Powrót</button></a>
             <div>
                 <br><hr>    
             </div>
@@ -32,7 +32,7 @@
     <div class="card" style="width:800px; margin-top:35px; margin-left:auto; margin-right:auto; text-align: left; ">
         <div class="card-body">
             <h6 class="card-title">
-                <?php
+            <?php
 
                 echo '<div class="col">Wynik: ' . ($game->getScore() * 10) . '/' . $game->getMaxScore() * 10;
                 echo '</div><div class="col">Liczba pozostałych pytań: ' . count(Session::get('questions'));
@@ -52,12 +52,17 @@
                         ));
 
                         if ($validation->passed()) {
-                            // echo $game->question->answer .' '. Input::get('city') .' --';
-                            // echo var_dump(strtolower($game->question->answer)===strtolower(Input::get('city')));
                             if ($game->checkAnswer(Input::get('city'))) {
+                                if(count(Session::get('questions'))==0) {
+                                    $game->addScore(1);
+                                    $game->addScoreToDB();
+                                    Session::flash('end_game_city', 'GRATULACJE! <br/> Twój wynik to '. Session::get('score')*10);                                    
+                                    header('Location: endCityGame.php');
+                                }
                                 echo '<div class="alert alert-success" role="alert">Brawo! Poprawna odpowiedź.</div>';
+
                             } else {
-                                header('Location: level.php');
+                                header('Location: endCityGame.php');
                             }
                         } else {
                             echo '<div class="alert alert-danger" role="alert">';
@@ -69,8 +74,8 @@
                         }
                     }
                 }
-
-                ?>
+                
+            ?>
         </div>
         </h6>
         <h5 class="card-title"><?php echo $game->getQuestion()->question; ?></h5>

@@ -33,7 +33,7 @@
                     <h2><b>GRA - Wisielec</b></h2>
                 </div>
                 <div class="" style="text-align:right">
-                    <a href="selectGame.php"><button class="btn btn-info">Powrót</button></a>
+                    <a href="endCityGame.php"><button class="btn btn-info">Powrót</button></a>
                     <div>
                         <br>
                         <hr>
@@ -53,15 +53,29 @@
                     if (Token::check(Input::get('token'))) {
 
                         if ($game->checkAnswer(Input::get('city'))) {
+                            if(count(Session::get('questions'))==0) {
+                                $game->addScoreToDB();
+                                
+                                Session::flash('end_game_city', 'GRATULACJE! <br/> Twój wynik to '. Session::get('score')*10);
+                                Session::delete('score');
+                                Session::delete('question');
+                                Session::delete('questions');
+                                Session::delete('id_question');
+
+                                header('Location: endCityGame.php');
+                            }
                             echo '<div class="alert alert-success" role="alert">Brawo! Poprawna odpowiedź.</div>';
+
                         } else {
-                            header('Location: level.php');
+
+                            header('Location: endCityGame.php');
                         }
                          
                     }
                 }
 
                 // echo var_dump($game->getQuestion());
+                // echo var_dump($game->getQuestion()) .'<br/>----<br/>';
 
                 $index_array = $game->randIndex();
                 $answer[0] = $game->getQuestion()->answer; 
@@ -99,6 +113,7 @@
     <footer>
         <?php
             // echo var_dump($game->db_questions);
+            // echo var_dump(Session::get('questions')) .'<br/>----<br/>';
         ?>
     </footer>
 
