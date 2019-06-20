@@ -1,0 +1,9 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule	selectGame.php /wybierz-gre/
+RewriteRule ^(GET|POST|PUT|DELETE)/([a-zA-Z-_0-9]+)/([a-zA-Z-\ _,0-9]+)/([a-zA-Z-\ _0-9]+)?$ api.php?method=$1&tab=$2&val=$3&col=$4 [NC,L]
+RewriteRule ^(GET|POST|PUT|DELETE)/([a-zA-Z-_0-9]+)/([a-zA-Z\ _\-,0-9]+)?$ api.php?method=$1&tab=$2&val=$3 [NC,L]
+RewriteRule ^(GET|POST|PUT|DELETE)/([a-zA-Z-_0-9]+)/?$ api.php?method=$1&tab=$2 [NC,L]
+# ONLY PERMITTED METHOD -- GET|POST|PUT|DELETE
+RewriteRule ^(GET|POST|PUT|DELETE)/?$ api.php?method=$1 [NC,L]

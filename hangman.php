@@ -8,14 +8,13 @@
     }
 
 ?>
-<html>
+<!DOCTYPE HTML>
+<HTML lang="pl">
 
-<head>
+    <?php require_once PATH_TO_HEAD; ?>
+
     <title>Wisielec</title>
-    <!-- Bootstrap core CSS -->
-    <link href="discriptions/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="style.css" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -36,35 +35,43 @@
                 <?php
                 include 'config_hangman.php';
                 include 'functions_hangman.php';
+                
                 if (empty($_POST)) {
                     if (isset($_SESSION['answer'])) unset($_SESSION['answer']);
                 }
-                //
+
+
                 if (!isset($_SESSION['answer'])) {
+                    
                     $_SESSION['attempts'] = 0;
                     $answer = fetchWordArray($WORDLISTFILE);
                     $_SESSION['answer'] = $answer;
                     $_SESSION['hidden'] = hidenCharacters($answer);
                     echo '<b>' . 'Pozostałe ruchy: ' . ($MAX_ATTEMPTS - $_SESSION['attempts']) . '</b>' . '<br>';
+                
                 } else {
+
                     if (isset($_POST['userInput'])) {
                         $userInput = $_POST['userInput'];
                         $_SESSION['hidden'] = checkAndReplace(strtolower($userInput), $_SESSION['hidden'], $_SESSION['answer']);
                         chceckGameOver($MAX_ATTEMPTS, $_SESSION['attempts'], $_SESSION['answer'], $_SESSION['hidden']);
                     }
+                    
                     $_SESSION['attempts'] = $_SESSION['attempts'] + 1;
                     echo '<b>' . 'Pozostałe ruchy: ' . ($MAX_ATTEMPTS - $_SESSION['attempts']) . '</b>' . '<br>';
                 }
-                ?> <div class="word">
+
+
+                ?> 
+            <div class="word">
                     <h3>
                         <?php
-                        $hidden = $_SESSION['hidden'];
+                        $hidden =Session::get('hidden');
                         foreach ($hidden as $char) echo '<b>' . $char . " " . '</b>';
                         ?>
                     </h3>
                 </div>
             </div>
-
 
             <script type="application/javascript">
                 function validateInput() {
@@ -79,18 +86,19 @@
                     }
                 }
             </script>
-            <div class="float-left">
+            
+            <div class="formularz">
                 <form name="inputForm" action="" method="post">
                     <div class="float-left">
                         Podaj literę: <input name="userInput" style=" border-radius: 5px; width:50px" type="text" size="1" maxlength="1">
                     </div>
-                    <div class="float-left">
+                    <div class="float-left" style="text-align:left;">
                         <input type="submit" value="Sprawdź" class="btn btn-secondary" style="margin-left:10px;margin-right:10px" onclick="return validateInput();">
                     </div>
                 </form>
             </div>
-            <div class="float-left">
-                <a href="" class="btn btn-danger">Spróbuj inne słowo</a>
+            <div>
+                <a href="" class="btn btn-danger" style="text-align:right;">Spróbuj inne słowo</a>
             </div>
         </div>
     </div>

@@ -82,9 +82,9 @@ function chceckGameOver($MAX_ATTEMPTS, $userAttempts, $answer, $hidden)
         }
         echo '<br><form action="hangman.php" method="POST">
         <input type="submit" class="btn btn-danger" name="newWord" value="Zagraj ponownie"></form><br>';
-        if(isset($_POST['newWord']))
+        if(Input::exists('newWord'))
         {
-            unset($_SESSION['hidden']);
+            Session::delete('hidden');
         }
         Session::delete('hidden');
         die;
@@ -93,9 +93,8 @@ function chceckGameOver($MAX_ATTEMPTS, $userAttempts, $answer, $hidden)
     {
         echo '<h1>'.'Przegrałeś!'.'</h1>'; 
         echo '<h2>'.'Gra skończona!'.'</h2>'; 
-        echo "\n\r".'<h4>'.'<br>'.'Słowo to: '.'</h4>';
         
-        echo 'Gra skończona: Prawidłowe słowo to:  ';
+        echo 'Prawidłowe słowo to:  ';
         foreach($answer as $letter)
         {
             echo $letter;
@@ -104,7 +103,7 @@ function chceckGameOver($MAX_ATTEMPTS, $userAttempts, $answer, $hidden)
         <input type="submit" name="newWord" class="btn btn-danger" value="Zagraj ponownie"></form><br>';
         if(isset($_POST['newWord']))
         {
-            unset($_SESSION['hidden']);
+            Session::delete('hidden');
         }
         Session::delete('hidden');
         die;

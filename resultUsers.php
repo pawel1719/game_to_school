@@ -43,19 +43,17 @@ require_once 'classes/config.php';
     </div>
 
     <div class="content text-center">
-        
         <?php
 
             $db = DBB::getInstance();
 
         ?>
-
         <nav>
-        <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Wisielec</a>
-            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Zgadywanka stolic</a>
-            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tor przeszkód</a>
-        </div>
+            <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Wisielec</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Zgadywanka stolic</a>
+                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tor przeszkód</a>
+            </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -79,7 +77,7 @@ require_once 'classes/config.php';
                     echo '  <tr>
                                 <th scope="row">'. $counter .'</th>
                                 <td>'. $row->nick .'</td>
-                                <td>'. ($row->score*10) .'</td>
+                                <td>'. ($row->score) .'</td>
                                 <td>'. $row->date .'</dt>
                             </tr>';
                     $counter++;
@@ -110,7 +108,7 @@ require_once 'classes/config.php';
                     echo '  <tr>
                                 <th scope="row">'. $counter .'</th>
                                 <td>'. $row->nick .'</td>
-                                <td>'. ($row->score*10) .'</td>
+                                <td>'. ($row->score) .'</td>
                                 <td>'. $row->date .'</dt>
                             </tr>';
                     $counter++;
@@ -141,7 +139,7 @@ require_once 'classes/config.php';
                     echo '<tr>
                             <th scope="row">'. $counter .'</th>
                             <td>'. $row->nick .'</td>
-                            <td>'. ($row->score*10) .'</td>
+                            <td>'. ($row->score) .'</td>
                             <td>'. $row->date .'</dt>
                         </tr>';
                     $counter++;
