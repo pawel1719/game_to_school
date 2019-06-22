@@ -88,7 +88,11 @@ if (!Session::exist('nick')) {
             </div>
         </div>
     </div>
-    <footer></footer>
+    <footer>
+
+        <?php require_once PATH_TO_FOOTER; ?>
+
+    </footer>
     <script src="discriptions/js/bootstrap.min.js"></script>
 
 </BODY>

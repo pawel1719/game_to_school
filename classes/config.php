@@ -8,5 +8,6 @@
 
 
 define('PATH_TO_HEAD', 'include/inc.head.html');
+define('PATH_TO_FOOTER', 'include/inc.footer.html');
 
 ?>

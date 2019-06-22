@@ -51,8 +51,9 @@ require_once 'classes/config.php';
         <nav>
             <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="false">Wisielec</a>
-                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Zgadywanka stolic</a>
-                <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tor przeszkód</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">Zgadywanka stolic - łatwy</a>
+                <a class="nav-item nav-link" id="nav-profile2-tab" data-toggle="tab" href="#nav-profile2" role="tab" aria-controls="nav-profile2" aria-selected="true">Zgadywanka stolic - trudny</a>
+                <!-- <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Tor przeszkód</a> -->
             </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
@@ -100,6 +101,37 @@ require_once 'classes/config.php';
                 <tbody>
             <?php
                 //data form db
+                $results_for_city = $db->query('SELECT `ID`, `nick`, `score`, `date` FROM user_ranking WHERE hidden = 0 AND id_type = 4 GROUP BY score DESC;')->results();
+                $counter = 1;
+                    
+                //show result
+                foreach($results_for_city as $row) {
+                    echo '  <tr>
+                                <th scope="row">'. $counter .'</th>
+                                <td>'. $row->nick .'</td>
+                                <td>'. ($row->score) .'</td>
+                                <td>'. $row->date .'</dt>
+                            </tr>';
+                    $counter++;
+                }
+
+            ?>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="nav-profile2" role="tabpanel" aria-labelledby="nav-profile2-tab">
+            <table class="table table-striped table-hover table-light">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">NR.</th>
+                    <th scope="col">NICK</th>
+                    <th scope="col">PUNKTY</th>
+                    <th scope="col">DATA</th>
+                    </tr>
+                </thead>
+                <tbody>
+            <?php
+                //data form db
                 $results_for_city = $db->query('SELECT `ID`, `nick`, `score`, `date` FROM user_ranking WHERE hidden = 0 AND id_type = 1 GROUP BY score DESC;')->results();
                 $counter = 1;
                     
@@ -118,6 +150,7 @@ require_once 'classes/config.php';
                 </tbody>
             </table>
         </div>
+        <!--
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
             <table class="table table-striped table-hover table-light">
                 <thead class="thead-dark">
@@ -130,6 +163,7 @@ require_once 'classes/config.php';
                 </thead>
                 <tbody>
             <?php
+            /*
                 //data form db
                 $results_for_city = $db->query('SELECT `ID`, `nick`, `score`, `date` FROM user_ranking WHERE hidden = 0 AND id_type = 2 GROUP BY score DESC;')->results();
                 $counter = 1;
@@ -144,15 +178,18 @@ require_once 'classes/config.php';
                         </tr>';
                     $counter++;
                 }
-
+            */
             ?>
                 </tbody>
             </table>
-        </div>
+        </div> 
+        -->
         </div>
     </div>
         
-    <footer></footer>
+    <footer>
+        <?php require_once PATH_TO_FOOTER; ?>
+    </footer>
     <script src="discriptions/js/bootstrap.min.js"></script>
 </BODY>
 

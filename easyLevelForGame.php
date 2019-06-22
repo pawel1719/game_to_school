@@ -52,9 +52,9 @@
                 if (Input::exists()) {
                     if (Token::check(Input::get('token'))) {
 
-                        if ($game->checkAnswer(Input::get('city'))) {
+                        if ($game->checkAnswer(Input::get('city'), 4)) {
                             if(count(Session::get('questions'))==0) {
-                                $game->addScoreToDB();
+                                $game->addScoreToDB(4);
                                 
                                 Session::flash('end_game_city', 'GRATULACJE! <br/> Twój wynik to '. Session::get('score')*10);
                                 Session::delete('score');
@@ -67,7 +67,8 @@
                             echo '<div class="alert alert-success" role="alert">Brawo! Poprawna odpowiedź.</div>';
 
                         } else {
-
+                            
+                            $game->addScoreToDB(4);
                             header('Location: endCityGame.php');
                         }
                          

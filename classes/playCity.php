@@ -77,7 +77,7 @@ class playCity {
             return true;
         }else{
             $this->counterWrongAnswer($this->question->ID);
-            $this->addScoreToDB();
+            // $this->addScoreToDB(1);
             Session::flash('end_game_city', 'KONIEC GRY!  <br/> Twój wynik to '. $this->score*10 .' <br/> Spróbuj jeszcze raz');
 
             Session::delete('score');
@@ -89,14 +89,14 @@ class playCity {
         }
     }//end function
 
-    public function addScoreToDB() {
+    public function addScoreToDB($type_game) {
         $exist = $this->_db->get('user_ranking', array('nick', '=', $this->nick));
-        $biggest = false;
+        $biggest = true;
         // echo var_dump($exist);
 
         foreach($exist->results() as $array) {
-            if(Session::get('score') > $array->score) {
-                $biggest = true;
+            if(Session::get('score')*10 > $array->score) {
+                $biggest = false;
             }
         }
 
@@ -104,7 +104,9 @@ class playCity {
             //set hidden as 1 when row exist
             if($exist->count() > 0) {
                 foreach($exist->results() as $row) {
-                    $this->_db->update('user_ranking',$row->ID, array('hidden' => 1));
+                    if($row->id_type==$type_game) {
+                        $this->_db->update('user_ranking',$row->ID, array('hidden' => 1));
+                    }
                 }      
             }
             //add score to db
@@ -112,7 +114,7 @@ class playCity {
                 'nick'      => $this->nick,
                 'score'     => $this->getScore()*10,
                 'hidden'    => 0,
-                'id_type'   => 1,
+                'id_type'   => $type_game,
                 'date'      => date('Y-m-d H:i:s')
             ));
         }

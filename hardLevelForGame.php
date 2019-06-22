@@ -55,13 +55,14 @@
                             if ($game->checkAnswer(Input::get('city'))) {
                                 if(count(Session::get('questions'))==0) {
                                     $game->addScore(1);
-                                    $game->addScoreToDB();
+                                    $game->addScoreToDB(1);
                                     Session::flash('end_game_city', 'GRATULACJE! <br/> Twój wynik to '. Session::get('score')*10);                                    
                                     header('Location: endCityGame.php');
                                 }
                                 echo '<div class="alert alert-success" role="alert">Brawo! Poprawna odpowiedź.</div>';
 
                             } else {
+                                $game->addScoreToDB(1);
                                 header('Location: endCityGame.php');
                             }
                         } else {

@@ -55,7 +55,9 @@ if (!Session::exist('nick')) {
         <a href="selectGame.php"><button class="btn btn-info ">Wyjdź z gry</button></a>
     </div>
 
-    <footer></footer>
+    <footer>
+        <?php require_once PATH_TO_FOOTER; ?>
+    </footer>
 
 </BODY>
 

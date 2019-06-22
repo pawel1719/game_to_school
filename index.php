@@ -33,7 +33,7 @@ require_once 'classes/config.php';
 </HEAD>
 
 <BODY>
-
+    </main>
     <div class="head">
         <h2><b>GRA - zdadnij państwo lub stolicę</b></h2>
     </div>
@@ -87,7 +87,10 @@ require_once 'classes/config.php';
 
         </section>
     </div>
-    <footer></footer>
+    </main>
+
+        <?php require_once PATH_TO_FOOTER; ?>
+
     <script src="discriptions/js/bootstrap.min.js"></script>
 </BODY>
 

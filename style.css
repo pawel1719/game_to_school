@@ -62,3 +62,17 @@ img{
 .formularz{
     margin-top: 50px;
 }
+.footer {
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    margin-right: -20px;
+    margin-left: -20px;
+    width: 100vw;
+    background-color: rgb(185, 181, 181);
+    /* padding: 20px 0; */
+    color: #FFF;
+}
+.footer p {
+    margin: 0px;
+}
